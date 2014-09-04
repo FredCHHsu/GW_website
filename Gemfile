@@ -4,7 +4,21 @@ source 'https://rubygems.org'
 gem 'rails'
 
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+group :development, :test do
+  gem 'sqlite3'
+end
+
+group :development do
+  gem "magic_encoding" #解決 Rails 中文顯示問題
+  gem "annotate" # 在 Model 裡顯示對應的資料庫設定
+  gem "better_errors", "~> 0.9.0" #錯誤訊息幫手
+  gem 'meta_request' # 查看 log @ chrome 神器
+end
+
+group :production do
+  gem "pg"
+  gem 'rails_12factor'
+end
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
