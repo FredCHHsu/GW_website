@@ -1,1 +1,37 @@
-<h1>Hello Meals</h1>
+<div class="col-md-12">
+	<div class="panel panel-default">
+		<!-- Default panel contents -->
+		<div class="panel-heading">
+			<h3>餐點列表</h3>
+			<%= link_to("我要提供餐點", new_meal_path, :class => "btn btn-primary pull-right") %>
+		</div>
+		<!-- Table -->
+		<table class="table">
+			<thead>
+				<tr>
+					<td> #</td>
+					<td> Title</td>
+					<td> Menu</td>
+					<td> Start Time</td>
+				</tr>
+			</thead>
+			<tbody>
+				<% @meals.each do |meal| %>
+				<tr>
+					<td> # </td>
+					<td> <%= link_to(meal.title, meal_path(meal)) %> </td>
+					<td> <%= truncate(meal.menu) %></td>
+					<td> <%= meal.startTime %></td>
+					<td> <%= link_to("編輯", edit_meal_path(meal), 
+						:class=>"btn btn_sm btn_default" ) %>
+					<%= link_to("刪除", meal_path(meal),
+						:class=>"btn btn_sm btn_default", 
+						:method=>:delete, data:{comfirm: "確認刪除？"})%>
+					</td>
+
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

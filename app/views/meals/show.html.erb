@@ -1,0 +1,11 @@
+<div class="col-md-12">
+	<h2><%= @meal.title %></h2>
+	<div class="meal">
+		<%= link_to("編輯", edit_meal_path(@meal), :class=>"btn btn-primary") %>
+	</div>
+	<h3><%= @meal.takeType %></h3>
+	<h3><%= @meal.address %></h3>
+	<p>accept <%= @meal.minGuests %> ~ <%= @meal.maxGuests %> people</p>
+	<p>from <%= @meal.startTime %> to <%= @meal.endTime %></p>
+	<p><%= @meal.menu %></p>
+</div>
