@@ -18,7 +18,7 @@
 			<tbody>
 				<% @meals.each do |meal| %>
 				<tr>
-					<td> # </td>
+					<td> <%= image_tag(meal.picture.thumb.url)%> </td>
 					<td> <%= link_to(meal.title, meal_path(meal)) %> </td>
 					<td> <%= truncate(meal.menu) %></td>
 					<td> <%= meal.startTime %></td>

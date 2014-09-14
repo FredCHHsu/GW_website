@@ -27,7 +27,7 @@ class MealsController < ApplicationController
       render :edit
     end
   end
-  def delete
+  def destroy
     @meal = Meal.find(params[:id])
     @meal.destroy
       redirect_to meals_path, alert:"餐點已取消"

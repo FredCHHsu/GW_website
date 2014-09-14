@@ -1,7 +1,7 @@
 <div class="col-md-12">
 	<h2><%= @meal.title %></h2>
 	<%= link_to("編輯", edit_meal_path(@meal), :class=>"btn btn-primary") %>
-	<p>照片:<%= image_tag(@meal.picture.url, width: 480) if @meal.picture.present? %></p>
+	<p>照片:<%= image_tag(@meal.picture.url) if @meal.picture.present? %></p>
 	<p>形式:<%= @meal.takeType %></p>
 	<p>新台幣<%= @meal.price %>元</p>
 	<p>地點:<%= @meal.address %></p>
