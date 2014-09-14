@@ -14,7 +14,7 @@ class MealsController < ApplicationController
   def create
     @meal = Meal.new(meal_params)
     if @meal.save
-      redirect_to meals_path, :notice => "新增餐點成功"
+      redirect_to meals_path, notice: "新增餐點成功"
     else
       render :new
     end

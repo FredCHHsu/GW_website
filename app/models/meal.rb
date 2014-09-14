@@ -1,6 +1,7 @@
 class Meal < ActiveRecord::Base
   validates :title, presence: true
   validates :takeType, presence: true
+  validates :price, presence: true
   validates :address, presence: true
   validates :menu, presence: true
   validates :minGuests, presence: true

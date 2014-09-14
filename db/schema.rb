@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 20140912034632) do
   create_table "meals", force: true do |t|
     t.string   "title"
     t.string   "takeType"
+    t.integer  "price"
     t.string   "address"
     t.text     "menu"
     t.integer  "minGuests"

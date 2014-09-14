@@ -9,3 +9,11 @@
 .input{
 	/*display: inline;*/
 }
+.error_explanation{
+	color: red;
+}
+span{
+	.error{
+		color: red;
+	}
+}
