@@ -1,11 +1,13 @@
 <div class="col-md-12">
 	<h2><%= @meal.title %></h2>
-	<div class="meal">
-		<%= link_to("編輯", edit_meal_path(@meal), :class=>"btn btn-primary") %>
-	</div>
-	<h3><%= @meal.takeType %></h3>
-	<h3><%= @meal.address %></h3>
-	<p>accept <%= @meal.minGuests %> ~ <%= @meal.maxGuests %> people</p>
-	<p>from <%= @meal.startTime %> to <%= @meal.endTime %></p>
-	<p><%= @meal.menu %></p>
+	<%= link_to("編輯", edit_meal_path(@meal), :class=>"btn btn-primary") %>
+	<p>照片:<%= image_tag(@meal.picture.url, width: 480) if @meal.picture.present? %></p>
+	<p>形式:<%= @meal.takeType %></p>
+	<p>新台幣<%= @meal.price %>元</p>
+	<p>地點:<%= @meal.address %></p>
+	<p>菜單:<%= @meal.menu %></p>
+	<p>接受<%= @meal.minGuests %>～<%= @meal.maxGuests %>人</p>
+	<p>時間:<%= @meal.startTime %>～<%= @meal.endTime %></p>
+	<%= link_to("我想吃", "#", :class=>"btn btn-primary") %>
+	
 </div>

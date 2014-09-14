@@ -30,11 +30,11 @@ class MealsController < ApplicationController
   def delete
     @meal = Meal.find(params[:id])
     @meal.destroy
-    redirect_to meals_path, alert:"餐點已取消"
+      redirect_to meals_path, alert:"餐點已取消"
   end
   private
   def meal_params
-    params.require(:meal).permit(:title, :takeType, :address, :menu, 
-      :minGuests, :maxGuests, :startTime, :endTime)
+    params.require(:meal).permit(:title, :takeType, :price, :address, :menu, 
+      :minGuests, :maxGuests, :startTime, :endTime, :picture)
   end
 end

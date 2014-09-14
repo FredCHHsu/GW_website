@@ -8,4 +8,5 @@ class Meal < ActiveRecord::Base
   validates :maxGuests, presence: true
   validates :startTime, presence: true
   validates :endTime, presence: true
+  mount_uploader :picture, PictureUploader
 end
