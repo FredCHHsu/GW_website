@@ -1,5 +1,9 @@
 class User < ActiveRecord::Base
   has_many :meals
+
+  has_many :meal_guests
+  has_many :participated_meals, :through => :meal_guests, :source => :meal
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -19,5 +23,14 @@ class User < ActiveRecord::Base
         user.email = data["email"] if user.email.blank?
       end
     end
+  end
+  def join!(meal)
+    participated_meals << meal
+  end
+  def quit!(meal)
+    participated_meals.delete(meal)
+  end
+  def is_member_of?(meal)
+    participated_meals.include?(meal)
   end
 end

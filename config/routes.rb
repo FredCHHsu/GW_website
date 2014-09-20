@@ -4,18 +4,25 @@ GWWebsite::Application.routes.draw do
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   # You can have the root of your site routed with "root"
-  # root 'static_pages#index'
-  root 'meals#index'
+  root 'static_pages#index'
+  #root 'meals#index'
+  
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
+  get "how_we_works" => "static_pages#how_we_works"
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
 
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-  resources :meals
+  resources :meals do
+    member do
+      post :join
+      post :quit
+    end
+  end
 
   # Example resource route with options:
   #   resources :products do

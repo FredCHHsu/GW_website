@@ -15,6 +15,7 @@ class MealsController < ApplicationController
   def create
     @meal = current_user.meals.new(meal_params)
     if @meal.save
+      current_user.join!(@meal)
       redirect_to meals_path, notice: "新增餐點成功"
     else
       render :new
@@ -32,6 +33,26 @@ class MealsController < ApplicationController
     @meal = current_user.meals.find(params[:id])
     @meal.destroy
       redirect_to meals_path, alert:"餐點已取消"
+  end
+  def join
+    @meal = Meal.find(params[:id])
+    if !current_user.is_member_of?(@meal)
+      current_user.join!(@meal)
+      flash[:notice] = "加入成功"
+    else
+      flash[:warning] = "已加入！"
+    end
+    redirect_to meal_path(@meal)
+  end
+  def quit
+    @meal = Meal.find(params[:id])
+    if current_user.is_member_of?(@meal)
+      current_user.quit!(@meal)
+      flash[:alert] = "已退出"
+    else
+      flash[:warning] = "未加入無法退出"
+    end
+    redirect_to meal_path(@meal)
   end
   private
   def meal_params
