@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140915084951) do
+ActiveRecord::Schema.define(version: 20140921103004) do
 
   create_table "meal_guests", force: true do |t|
     t.integer  "meal_id"
@@ -52,6 +52,8 @@ ActiveRecord::Schema.define(version: 20140915084951) do
     t.string   "name"
     t.string   "provider"
     t.string   "uid"
+    t.string   "image"
+    t.string   "fblink"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
