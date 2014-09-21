@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_many :meals
-
   has_many :meal_guests
   has_many :participated_meals, :through => :meal_guests, :source => :meal
 
@@ -33,5 +32,8 @@ class User < ActiveRecord::Base
   end
   def is_member_of?(meal)
     participated_meals.include?(meal)
+  end
+  def editable_by?(current_user)
+    current_user == self
   end
 end
