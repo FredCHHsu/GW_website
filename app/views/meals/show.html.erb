@@ -1,5 +1,6 @@
 <div class="col-md-12">
 	<h2><%= @meal.title %></h2>
+	<p>提供者:<%= link_to(@meal.owner.name, users_path(@meal.owner)) %></p>
 	<p>照片:<%= image_tag(@meal.picture.url) if @meal.picture.present? %></p>
 	<p>形式:<%= @meal.takeType %></p>
 	<p>新台幣<%= @meal.price %>元</p>
@@ -13,12 +14,16 @@
 	<% end %>
 	<div class="meal">
 		<% if !current_user.nil? %>
-		<% if current_user.is_member_of?(@meal) %>
+		<% if current_user.is_guest_of?(@meal) %>
 		<%= link_to("退出", quit_meal_path(@meal), :method => :post, :class => "btn btn-info") %>
 		<% else %>
 		<%= link_to("加入", join_meal_path(@meal), :method => :post, :class => "btn btn-info") %>
 		<% end %>
 		<% end %>
 	</div>
+
+	<% @meal.guests.each do |guest| %>
+	<%= link_to(guest.name, users_path(guest)) %>
+	<% end %>
 	
 </div>

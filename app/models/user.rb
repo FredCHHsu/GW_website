@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
   def quit!(meal)
     participated_meals.delete(meal)
   end
-  def is_member_of?(meal)
+  def is_guest_of?(meal)
     participated_meals.include?(meal)
   end
   def editable_by?(current_user)

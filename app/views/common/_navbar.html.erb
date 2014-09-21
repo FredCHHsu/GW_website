@@ -19,8 +19,8 @@
 					</ul>
 				</li>
 				<% else %>
-					<!-- <li> <%#= link_to "註冊", new_user_registration_path %> </li> -->
-					<!-- <li> <%#= link_to "登入", new_user_session_path %> </li> -->
+					<li> <%= link_to "註冊", new_user_registration_path %> </li>
+					<li> <%= link_to "登入", new_user_session_path %> </li>
 					<li> <%= link_to "FACEBOOK登入", user_omniauth_authorize_path(:facebook)%></li>
 				<% end %>
 				
