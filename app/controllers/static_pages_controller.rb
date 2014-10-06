@@ -3,8 +3,7 @@ class StaticPagesController < ApplicationController
     get_meals
   end
   def how_we_works
-  end
-  
+  end  
   private
   def get_meals
     @meals = Meal.all

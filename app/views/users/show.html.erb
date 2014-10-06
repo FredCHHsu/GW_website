@@ -1,27 +1,29 @@
 <h2><%= @user.name %>'s profile</h2>
 <% if @user.editable_by?(current_user) %>
-	<%= link_to "編輯帳戶", edit_user_registration_path %>
+<%= link_to "編輯帳戶", edit_user_registration_path %>
 <% end %>
 <div class="jumbotron">
-	<% if @user.image %>
-		<%= image_tag(@user.image+"?type=large") %>
-	<% end %>
-	<%= @user.name %>
-	<%= link_to("FB", @user.fblink) %>
+	<div class="container">
+		<%= image_tag(@user.getImg(width=180,height=180), width:"180") %>
+		<%= @user.name %>
+		<%= link_to("FB", @user.fblink) %>
+	</div>
 </div>
 <h3>my meals</h3>
 <% @user.meals.each do |meal| %>
-	<%= image_tag(meal.picture.thumb.url)%>
-	<%= link_to(meal.title, meal_path(meal)) %>
-	<% meal.guests.each do |guest| %>
-	<%= link_to(guest.name, users_path(guest)) %>
-	<% end %>
+<%= image_tag(meal.picture.thumb.url)%>
+<%= link_to(meal.title, meal_path(meal)) %>
+<% meal.guests.each do |guest| %>
+<%= link_to(guest.name, users_path(guest)) %>
+<% end %>
 <% end %>
 <h3>participated meals</h3>
 <% @user.participated_meals.each do |meal| %>
-	<%= image_tag(meal.picture.thumb.url)%>
-	<%= link_to(meal.title, meal_path(meal)) %>
-	<% meal.guests.each do |guest| %>
-	<%= link_to(guest.name, users_path(guest)) %>
-	<% end %>
+<% if meal.owner != @user %>
+<%= image_tag(meal.picture.thumb.url)%>
+<%= link_to(meal.title, meal_path(meal)) %>
+<% meal.guests.each do |guest| %>
+<%= link_to(guest.name, users_path(guest)) %>
+<% end %>
+<% end %>
 <% end %>

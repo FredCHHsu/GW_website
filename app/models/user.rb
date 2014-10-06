@@ -24,6 +24,14 @@ class User < ActiveRecord::Base
       end
     end
   end
+  #get facebook Image link
+  def getImg(width=64, height=64)
+    if self.image
+      self.image+"?width=#{width}&height=#{height}"
+    else
+      "no_image.png"
+    end
+  end
   def join!(meal)
     participated_meals << meal
   end
