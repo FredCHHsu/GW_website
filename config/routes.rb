@@ -23,6 +23,7 @@ GWWebsite::Application.routes.draw do
       post :join
       post :quit
     end
+    resources :comments
   end
 
   # Example resource route with options:
