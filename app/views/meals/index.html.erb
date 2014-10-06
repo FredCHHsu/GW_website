@@ -21,11 +21,10 @@
 				<tr>
 					<td> <%= image_tag(meal.picture.thumb.url)%> </td>
 					<td> <%= link_to(meal.title, meal_path(meal)) %> </td>
-<<<<<<< HEAD
-					<td> <%= link_to(meal.owner.name, "#") %></td>
-=======
-					<td> <%= link_to(image_tag(meal.owner.getImg, width:"64")+meal.owner.name, users_path(meal.owner) ) %></td>
->>>>>>> user_Image
+
+					<td> <%= link_to(image_tag(meal.owner.getImg, width:"64")+
+								meal.owner.name, users_path(meal.owner) ) %>
+					</td>
 					<td> <%= truncate(meal.menu) %></td>
 					<td> <%= meal.startTime %></td>
 					
