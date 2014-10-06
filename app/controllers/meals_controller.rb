@@ -5,6 +5,7 @@ class MealsController < ApplicationController
   end
   def show
     @meal = Meal.find(params[:id])
+    @comments = @meal.comments
   end
   def new
     @meal = Meal.new
@@ -36,7 +37,7 @@ class MealsController < ApplicationController
   end
   def join
     @meal = Meal.find(params[:id])
-    if !current_user.is_member_of?(@meal)
+    if !current_user.is_guest_of?(@meal)
       current_user.join!(@meal)
       flash[:notice] = "加入成功"
     else
@@ -46,7 +47,7 @@ class MealsController < ApplicationController
   end
   def quit
     @meal = Meal.find(params[:id])
-    if current_user.is_member_of?(@meal)
+    if current_user.is_guest_of?(@meal)
       current_user.quit!(@meal)
       flash[:alert] = "已退出"
     else

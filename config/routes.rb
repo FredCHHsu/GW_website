@@ -10,7 +10,8 @@ GWWebsite::Application.routes.draw do
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
-  get "how_we_works" => "static_pages#how_we_works"
+  match "how_we_works" => "static_pages#how_we_works", via: :get
+  get "users/:id", to: "users#show", as: "users"
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
@@ -22,6 +23,7 @@ GWWebsite::Application.routes.draw do
       post :join
       post :quit
     end
+    resources :comments
   end
 
   # Example resource route with options:

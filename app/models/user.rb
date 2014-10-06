@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   has_many :meals
-
   has_many :meal_guests
   has_many :participated_meals, :through => :meal_guests, :source => :meal
 
@@ -13,8 +12,9 @@ class User < ActiveRecord::Base
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]
-    user.name = auth.info.name   # assuming the user model has a name
-    #user.image = auth.info.image # assuming the user model has an image
+      user.name = auth.info.name   # FB name
+      user.image = auth.info.image # FB image
+      user.fblink = auth.info.urls.Facebook   # FB link
     end
   end
   def self.new_with_session(params, session)
@@ -24,13 +24,24 @@ class User < ActiveRecord::Base
       end
     end
   end
+  #get facebook Image link
+  def getImg(width=64, height=64)
+    if self.image
+      self.image+"?width=#{width}&height=#{height}"
+    else
+      "no_image.png"
+    end
+  end
   def join!(meal)
     participated_meals << meal
   end
   def quit!(meal)
     participated_meals.delete(meal)
   end
-  def is_member_of?(meal)
+  def is_guest_of?(meal)
     participated_meals.include?(meal)
+  end
+  def editable_by?(current_user)
+    current_user == self
   end
 end
