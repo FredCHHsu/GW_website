@@ -18,7 +18,12 @@
 			<tr>
 				<th>評價</th>
 				<th>評語</th>
-				<th><%= link_to( "新增評語", new_meal_comment_path(@meal), :class=>"btn btn-primary btn-xs" ) %></th>	
+				<th>評價人</th>
+				<th>
+				<% if current_user.is_guest_of?(@meal) %>
+				<%= link_to( "新增評語", new_meal_comment_path(@meal), :class=>"btn btn-primary btn-xs" ) %>
+				<% end %>
+				</th>	
 				<th colspan="2"></th>
 			</tr>
 		</thead>
@@ -27,9 +32,13 @@
 			<tr>
 				<td><%= comment.rating %></td>
 				<td><%= comment.content %></td>
+				<td><%= link_to(image_tag(comment.author.getImg, width:"64")+
+								comment.author.name, users_path(comment.author) ) %></td>
+				<% if current_user && comment.editable_by?(current_user) %>
 				<td><%= link_to("edit", edit_meal_comment_path(comment.meal, comment), :class => "btn btn-default btn-xs"  ) %>
 				<%= link_to("delete", meal_comment_path(comment.meal, comment), :class => "btn btn-default btn-xs", :method => :delete, data:{ confirm: "Are you sure?" } )%>
 				</td>
+				<% end %>
 			</tr>
 			<% end %>	
 		</tbody>

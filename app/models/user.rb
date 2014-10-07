@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :meals
   has_many :meal_guests
   has_many :participated_meals, :through => :meal_guests, :source => :meal
+  has_many :comments
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -43,5 +44,16 @@ class User < ActiveRecord::Base
   end
   def editable_by?(current_user)
     current_user == self
+  end
+  def calUserAvgRating
+    rating_sum = 0.0
+    count = 0
+    self.meals.each do |meal|
+      meal.comments.each do |comment|
+        rating_sum += comment.rating
+        count += 1
+      end
+    end 
+    { avgRating: rating_sum/count, commentCount: count }
   end
 end

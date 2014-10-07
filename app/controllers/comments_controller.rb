@@ -1,15 +1,16 @@
 class CommentsController < ApplicationController
+  before_action :find_meal
+  before_action :authenticate_user!
+  after_action :reCalculateUserAvgRating, only:[:create, :update, :destroy]
   def new
-    @meal = Meal.find(params[:meal_id])
     @comment = @meal.comments.new
   end
   def edit
-    @meal = Meal.find(params[:meal_id])
-    @comment = @meal.comments.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
   end
   def create
-    @meal = Meal.find(params[:meal_id])
     @comment = @meal.comments.new(comment_params)
+    @comment.author = current_user
     if @comment.save
       redirect_to meal_path(@meal), :notice => "新增評語成功！"
     else
@@ -17,8 +18,7 @@ class CommentsController < ApplicationController
     end
   end
   def update
-    @meal = Meal.find(params[:meal_id])
-    @comment = @meal.comments.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
     if @comment.update(comment_params)
       redirect_to meal_path(@meal), :notice => "修改評語成功"
     else
@@ -26,13 +26,21 @@ class CommentsController < ApplicationController
     end
   end
   def destroy
-    @meal = Meal.find(params[:meal_id])
-    @comment = @meal.comments.find(params[:id])
+    @comment = current_user.comments.find(params[:id])
     @comment.destroy
     redirect_to meal_path(@meal), :alert => "評語已刪除"
   end
+
   private
+  def find_meal
+    @meal = Meal.find(params[:meal_id])
+  end
   def comment_params
     params.require(:comment).permit(:rating, :content)
+  end
+
+  def reCalculateUserAvgRating
+    rating_params = @meal.owner.calUserAvgRating
+    @meal.owner.update(rating_params)
   end
 end
