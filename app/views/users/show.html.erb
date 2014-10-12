@@ -16,6 +16,7 @@
 <%= link_to(meal.title, meal_path(meal)) %>
 <% meal.guests.each do |guest| %>
 <%= link_to(guest.name, users_path(guest)) %>
+<%#= meal.MealGuest.state %>
 <% end %>
 <% end %>
 <h3>participated meals</h3>

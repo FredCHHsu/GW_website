@@ -38,9 +38,7 @@ class CommentsController < ApplicationController
   def comment_params
     params.require(:comment).permit(:rating, :content)
   end
-
   def reCalculateUserAvgRating
-    rating_params = @meal.owner.calUserAvgRating
-    @meal.owner.update(rating_params)
+    @meal.owner.calUserAvgRating
   end
 end

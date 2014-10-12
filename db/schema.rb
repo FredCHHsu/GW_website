@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007042556) do
+ActiveRecord::Schema.define(version: 20141008090756) do
 
   create_table "comments", force: true do |t|
     t.text     "content"
@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20141007042556) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "state",      limit: 1, default: 0
   end
 
   create_table "meals", force: true do |t|

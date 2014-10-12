@@ -20,7 +20,7 @@
 				<th>評語</th>
 				<th>評價人</th>
 				<th>
-				<% if current_user.is_guest_of?(@meal) %>
+				<% if current_user && current_user.is_guest_of?(@meal) %>
 				<%= link_to( "新增評語", new_meal_comment_path(@meal), :class=>"btn btn-primary btn-xs" ) %>
 				<% end %>
 				</th>	

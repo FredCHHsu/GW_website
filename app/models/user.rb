@@ -53,7 +53,8 @@ class User < ActiveRecord::Base
         rating_sum += comment.rating
         count += 1
       end
-    end 
-    { avgRating: rating_sum/count, commentCount: count }
+    end
+    params = { avgRating: (rating_sum/count).round(1), commentCount: count }
+    self.update_attributes(params)
   end
 end

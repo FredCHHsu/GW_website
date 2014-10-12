@@ -24,6 +24,7 @@ GWWebsite::Application.routes.draw do
       post :quit
     end
     resources :comments
+    # resources :meal_guests
   end
 
   # Example resource route with options:
