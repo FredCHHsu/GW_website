@@ -57,11 +57,11 @@ class MealsController < ApplicationController
   end
   def confirm
     @meal = Meal.find(params[:id])
-    @meal_guests = @meal.meal_guests.find(params[:user_id])
+    @reservation = @meal.reservations.find(params[:user_id])
   end
   def reject
     @meal = Meal.find(params[:id])
-    @meal_guests = @meal.meal_guests.find(params[:user_id])
+    @reservation = @meal.reservations.find(params[:user_id])
   end
   private
   def meal_params

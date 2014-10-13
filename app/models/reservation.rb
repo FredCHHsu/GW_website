@@ -1,4 +1,4 @@
-class MealGuest < ActiveRecord::Base
+class Reservation < ActiveRecord::Base
   belongs_to :user
   belongs_to :meal
   def confirm!(guest)

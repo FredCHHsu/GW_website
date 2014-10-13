@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   has_many :meals
-  has_many :meal_guests
-  has_many :participated_meals, :through => :meal_guests, :source => :meal
+  has_many :reservations
+  has_many :participated_meals, :through => :reservations, :source => :meal
   has_many :comments
 
   # Include default devise modules. Others available are:
