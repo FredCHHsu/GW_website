@@ -19,12 +19,13 @@ GWWebsite::Application.routes.draw do
   # Example resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :meals do
+    resources :comments
     member do
       post :join
       post :quit
+      put :confirm
+      put :reject
     end
-    resources :comments
-    # resources :meal_guests
   end
 
   # Example resource route with options:

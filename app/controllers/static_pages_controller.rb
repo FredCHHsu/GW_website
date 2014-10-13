@@ -8,9 +8,4 @@ class StaticPagesController < ApplicationController
   def get_meals
     @meals = Meal.all
   end
-  
-  private
-  def get_meals
-    @meals = Meal.all
-  end
 end
