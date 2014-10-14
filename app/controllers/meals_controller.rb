@@ -55,14 +55,6 @@ class MealsController < ApplicationController
     end
     redirect_to meal_path(@meal)
   end
-  def confirm
-    @meal = Meal.find(params[:id])
-    @reservation = @meal.reservations.find(params[:user_id])
-  end
-  def reject
-    @meal = Meal.find(params[:id])
-    @reservation = @meal.reservations.find(params[:user_id])
-  end
   private
   def meal_params
     params.require(:meal).permit(:title, :takeType, :price, :address, :menu, 
