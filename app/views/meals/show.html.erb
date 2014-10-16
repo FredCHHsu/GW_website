@@ -13,6 +13,27 @@
 	<%= link_to("編輯", edit_meal_path(@meal), :class=>"btn btn-primary") %>
 	<% end %>
 
+	<h4>有誰加入？</h4>
+	<% @meal.guests.each do |guest| %>
+	<%= link_to(guest.name, users_path(guest)) %>
+	<% r = @meal.reservations.find_by(user_id: guest.id) %>
+	<% case r.state %>
+	<% when 0 %>
+	<% if @meal.editable_by?(current_user) %>
+		<%= link_to( "接受", confirm_reservation_path(r), class: "btn btn-default", method: :put) %>
+		<%= link_to( "拒絕", reject_reservation_path(r), class: "btn btn-default",  method: :put) %>
+	<% else %>
+		<%= "等待主廚確認" %>
+	<% end %>
+	<% when 1 %>
+	<%= "已確認" %>
+	<%= link_to( "redo", recovery_reservation_path(r), class: "btn btn-default",  method: :put) %>
+	<% when -1 %>
+	<%= "已拒絕" %>	
+	<%= link_to( "redo", recovery_reservation_path(r), class: "btn btn-default",  method: :put) %>
+	<% end %>
+	<% end %>
+
 	<table class="table">
 		<thead>
 			<tr>

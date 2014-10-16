@@ -12,29 +12,12 @@
 </div>
 
 <h3>my meals</h3>
-
 <% @user.meals.each do |meal| %>
 <%= image_tag(meal.picture.thumb.url)%>
 <%= link_to(meal.title, meal_path(meal)) %>
-<% meal.guests.each do |guest| %>
-<%= link_to(guest.name, users_path(guest)) %>
-<% r = meal.reservations.find_by(user_id: guest.id) %>
-<% case r.state %>
-<% when 0 %>
-<%= link_to( "接受", confirm_reservation_path(r), class: "btn btn-default", method: :put) %>
-<%= link_to( "拒絕", reject_reservation_path(r), class: "btn btn-default",  method: :put) %>
-<% when 1 %>
-<%= "已確認" %>
-<%= link_to( "redo", recovery_reservation_path(r), class: "btn btn-default",  method: :put) %>
-<% when -1 %>
-<%= "已拒絕" %>	
-<%= link_to( "redo", recovery_reservation_path(r), class: "btn btn-default",  method: :put) %>
-<% end %>
-<% end %>
 <% end %>
 
 <h3>participated meals</h3>
-
 <% @user.participated_meals.each do |meal| %>
 <% if meal.owner != @user %>
 <%= image_tag(meal.picture.thumb.url)%>

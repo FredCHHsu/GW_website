@@ -16,7 +16,6 @@ class MealsController < ApplicationController
   def create
     @meal = current_user.meals.new(meal_params)
     if @meal.save
-      current_user.join!(@meal)
       redirect_to meals_path, notice: "新增餐點成功"
     else
       render :new
