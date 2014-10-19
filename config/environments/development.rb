@@ -32,11 +32,10 @@ GWWebsite::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
-    port:                 587,
-    domain:               'gmail.com',
-    user_name:            'fred.c.h.hsu@gmail.com',
-    password:             'benimaru97new',
+    port:                 '587',
+    domain:               'guestwhat2014.com',
+    user_name:            'service@guestwhat2014.com',
+    password:             'gw168168',
     authentication:       'plain',
     enable_starttls_auto: true  }
-
-  end
+end

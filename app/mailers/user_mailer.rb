@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "guestwhat2014@gmail.com"
+  default from: "service@guestwhat2014.com"
   def welcome_email(user)
     @user = user
     @url  = 'http://gw-website.dev/users/sign_in'
@@ -8,6 +8,6 @@ class UserMailer < ActionMailer::Base
   def join_email(meal, user)
     @meal = meal
     @user = user
-    mail(to: @meal.owner.email, subject: "#{@user.name} wants your #{@meal.title}")
+    mail(to: @meal.owner.email, subject: "歡迎來到好客網 Welcome to GuestWhat")
   end
 end

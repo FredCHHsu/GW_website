@@ -1,6 +1,7 @@
 <div class="col-md-12">
 	<h2><%= @meal.title %></h2>
 	<p>提供者:<%= link_to(@meal.owner.name, users_path(@meal.owner)) %></p>
+	<%= @meal.owner.email %>
 	<p>照片:<%= image_tag(@meal.picture.url) if @meal.picture.present? %></p>
 	<p>形式:<%= @meal.takeType %></p>
 	<p>新台幣<%= @meal.price %>元</p>
