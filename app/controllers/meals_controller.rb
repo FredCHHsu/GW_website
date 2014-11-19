@@ -38,12 +38,13 @@ class MealsController < ApplicationController
     @meal = Meal.find(params[:id])
     if !current_user.is_guest_of?(@meal)
       current_user.join!(@meal)
-      UserMailer.join_email(@meal, current_user).deliver
+      # UserMailer.join_email(@meal, current_user).deliver
       flash[:notice] = "加入成功，請等待主廚回應"
     else
       flash[:warning] = "已加入！"
     end
-    redirect_to meal_path(@meal)
+    @reservation = @meal.reservations.find_by(user_id: current_user.id)
+    # redirect_to meal_path(@meal)
   end
   def quit
     @meal = Meal.find(params[:id])

@@ -13,6 +13,7 @@ GWWebsite::Application.routes.draw do
   # match "how_we_works" => "static_pages#how_we_works", via: :get
   get "how_we_works", to: "static_pages#how_we_works"
   get "users/:id", to: "users#show", as: "users"
+  post 'notify', to: 'reservations#notify', as: 'notify'
 
   # Example of named route that can be invoked with purchase_url(id: product.id)
   #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase

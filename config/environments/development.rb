@@ -38,4 +38,8 @@ GWWebsite::Application.configure do
     password:             'gw168168',
     authentication:       'plain',
     enable_starttls_auto: true  }
+  
+  config.after_initialize do
+    EzAllpay.integration_mode = :development
+  end
 end

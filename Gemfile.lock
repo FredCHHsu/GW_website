@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/madeinfree/ez_allpay.git
+  revision: c2fb6bcd066215c0694bff7a553bc12692f2417b
+  specs:
+    ez_allpay (0.1.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -182,6 +188,7 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
+  ez_allpay!
   jbuilder (~> 1.2)
   jquery-rails
   magic_encoding
