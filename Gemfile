@@ -14,6 +14,7 @@ gem 'omniauth-facebook'
 #upload image
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'fog'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails'
