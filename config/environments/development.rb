@@ -35,7 +35,7 @@ GWWebsite::Application.configure do
     port:                 '587',
     domain:               'guestwhat2014.com',
     user_name:            'service@guestwhat2014.com',
-    password:             'gw168168',
+    password:             ENV['GMAIL_PW'],
     authentication:       'plain',
     enable_starttls_auto: true  }
   
