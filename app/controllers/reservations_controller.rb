@@ -1,7 +1,33 @@
 class ReservationsController < ApplicationController
-  before_action :find_reservation, except:[:notify]
+  before_action :find_meal, except:[:notify]
+  before_action :authenticate_user!
+  before_action :find_reservation, only:[:confirm, :reject, :recovery]
   skip_before_action :verify_authenticity_token, only:[:notify]
+  def index
+    
+  end
   def show
+    
+  end
+  def new
+    @reservation = @meal.reservations.new
+  end
+  def edit
+    
+  end
+  def create
+    @reservation = @meal.reservations.new(reservation_params)
+    @reservation.customer = current_user
+    if @reservation.save
+      redirect_to meal_reservation_path(@meal, @reservation), :notice => "新增訂單成功！"
+    else
+      render :new
+    end
+  end
+  def update
+    
+  end
+  def destroy
     
   end
   def confirm
@@ -28,8 +54,16 @@ class ReservationsController < ApplicationController
     end
   end
   private
+  def find_meal
+    @meal = Meal.find(params[:meal_id])
+  end
   def find_reservation
     @reservation = Reservation.find(params[:id])
+  end
+  private
+  def reservation_params
+    params.require(:reservation).permit(:amount, :totalprice, 
+      :contact_name, :contact_mail, :contact_phone)
   end
   def mac_value_ok?
     #整個的做法是先複製一份params，一份有checkMacValue，一鉁沒有，再把沒有的那一份做檢查碼的加密

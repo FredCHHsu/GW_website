@@ -26,13 +26,13 @@ GWWebsite::Application.routes.draw do
       post :join
       post :quit
     end
-  end
 
-  resources :reservations, only: :show do 
-    member do
-      put :confirm
-      put :reject
-      put :recovery
+    resources :reservations do 
+      member do
+        put :confirm
+        put :reject
+        put :recovery
+      end
     end
   end
 
