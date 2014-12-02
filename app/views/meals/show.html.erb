@@ -14,7 +14,7 @@
 	<%= link_to("編輯", edit_meal_path(@meal), :class=>"btn btn-primary") %>
 	<% end %>
 
-	<%#= render :template => 'reservations/new' %>
+	<%= render :template => 'reservations/new' %>
 
 	<h4>有誰加入？</h4>
 	<% @meal.guests.each do |guest| %>
@@ -67,8 +67,6 @@
 			<% end %>	
 		</tbody>
 	</table>
-
-	<%= link_to('預約', new_meal_reservation_path(@meal), :class => 'btn btn-info') %>
 
 	<div class="meal">
 		<% if !current_user.nil? %>
