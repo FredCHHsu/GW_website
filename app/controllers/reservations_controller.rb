@@ -4,10 +4,10 @@ class ReservationsController < ApplicationController
   before_action :find_reservation, only:[:confirm, :reject, :recovery]
   skip_before_action :verify_authenticity_token, only:[:notify]
   def index
-    
+    @reservations = current_user.reservations
   end
   def show
-    
+    @reservation = Reservation.find(params[:id])
   end
   def new
     @reservation = @meal.reservations.new

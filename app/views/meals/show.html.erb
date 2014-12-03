@@ -14,8 +14,6 @@
 	<%= link_to("編輯", edit_meal_path(@meal), :class=>"btn btn-primary") %>
 	<% end %>
 
-	<%= render :template => 'reservations/new' %>
-
 	<h4>有誰加入？</h4>
 	<% @meal.guests.each do |guest| %>
 	<%= link_to(guest.name, users_path(guest)) %>
@@ -36,6 +34,8 @@
 	<%= link_to( "redo", recovery_reservation_path(r), class: "btn btn-default",  method: :put) %>
 	<% end %>
 	<% end %>
+
+	<%= render :template => 'reservations/new' %>
 
 	<table class="table">
 		<thead>
