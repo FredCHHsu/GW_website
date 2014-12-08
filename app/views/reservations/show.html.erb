@@ -1,23 +1,12 @@
 <div class="col-md-12">
 	<p>預約人數: <%= @reservation.amount %> </p>
 	<p>總價: <%= @reservation.totalprice %> </p>
-	<p>付款情況: <%= @reservation.payment %>  </p>
+	<p>付款: <%= getPaymentState %>  </p>
 	<p>訂購人 <%= @reservation.contact_name %> </p>
 	<p>連絡信箱 <%= @reservation.contact_mail %> </p>
 	<p>聯絡電話 <%= @reservation.contact_phone %> </p>
-
-	<%= ez_allpay_for @reservation, :setting => { :value => "付款", :css => "btn btn-danger" } do %>
-  	<% attr_instead :MerchantTradeNo => "GuestWhat#{@reservation.id}" %>
-  	<% attr_instead :MerchantTradeDate => "#{@reservation.created_at}".gsub!("-","/").slice!(0..18) #廠商交易時間 #yyyy/MM/dd HH:mm:ss %>
-  	<%= "#{@reservation.created_at}".gsub!("-","/").slice!(0..18) %>
-  	<% attr_instead :PaymentType => "aio" #交易類型,預設為aio不更改 %>
-  	<% attr_instead :ChoosePayment => "ALL" #交易方式 %>
-  	<% attr_instead :TotalAmount => @meal.price #交易金額 %>
-  	<% attr_instead :TradeDesc => "description" #交易描述 %>
-  	<% attr_instead :ItemName => @meal.title #商品名稱 %>
-  <% end %>
 	<hr>
-	
+
 	<h2><%= @meal.title %></h2>
 	<p>提供者:<%= link_to(@meal.owner.name, users_path(@meal.owner)) %></p>
 	<%= @meal.owner.email %>
