@@ -1,6 +1,6 @@
 class ReservationsController < ApplicationController
   before_action :find_meal, except:[:notify]
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except:[:notify]
   before_action :find_reservation, only:[:confirm, :reject, :recovery]
   skip_before_action :verify_authenticity_token, only:[:notify]
   def index
@@ -48,7 +48,9 @@ class ReservationsController < ApplicationController
   def notify
     if mac_value_ok?
       UserMailer.notify(params).deliver
-      Reservation.find(params[:MerchantTradeNo][9..-1].to_i)[:payment] = true
+      @reservation = Reservation.find(params[:MerchantTradeNo][9..-1])
+      puts @reservation[:payment]
+      puts @reservation.payment
       render plain: "1|OK"
     else
       render plain: "0|error"
