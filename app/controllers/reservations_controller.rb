@@ -48,9 +48,7 @@ class ReservationsController < ApplicationController
   def notify
     if mac_value_ok?
       UserMailer.notify(params).deliver
-      @reservation = Reservation.find(params[:MerchantTradeNo][9..-1])
-      puts @reservation[:payment]
-      puts @reservation.payment
+      Reservation.find(params[:MerchantTradeNo][9..-1]).update(payment: "true")
       render plain: "1|OK"
     else
       render plain: "0|error"
