@@ -6,10 +6,10 @@ EzAllpay.setup do |allpay|
     allpay.choose_payment = 'ALL'
     allpay.return_url = 'http://gw-website.herokuapp.com/notify'
   else
-    allpay.merchant_id = "1060046"
-    allpay.hash_key    = "XBurQC9sgsIRXxb2"
-    allpay.hash_iv     = "iw0Vna7k6EkADOtx"
-    allpay.choose_payment = "ALL"
+    allpay.merchant_id = ENV['ALLPAY_MERCHANT_ID']
+    allpay.hash_key    = ENV['ALLPAY_HASH_KEY']
+    allpay.hash_iv     = ENV['ALLPAY_HASH_IV']
+    allpay.choose_payment = 'ALL'
     allpay.return_url = 'http://gw-website.herokuapp.com/notify'
   end
 end
