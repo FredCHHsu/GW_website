@@ -33,17 +33,10 @@ group :development do
   gem "annotate" # 在 Model 裡顯示對應的資料庫設定
   gem "better_errors", "~> 0.9.0" #錯誤訊息幫手
   gem 'meta_request' # 查看 log @ chrome 神器
-  # Use Capistrano for deployment
-  gem 'capistrano', '~> 3.1'
-  gem 'capistrano-rails', '~> 1.1.1'
-  gem 'capistrano-bundler'
-  gem 'capistrano-rbenv', '~> 2.0'
-  gem 'capistrano-unicorn-nginx', '~> 2.0'
-  gem 'capistrano-postgresql', '~> 3.0'
 end
 
 group :production do
-  gem "pg"
+  gem 'mysql2'
   gem 'rails_12factor'
 end
 
