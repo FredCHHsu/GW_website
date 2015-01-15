@@ -77,9 +77,6 @@ GEM
       responders
       thread_safe (~> 0.1)
       warden (~> 1.2.3)
-    dotenv (1.0.2)
-    dotenv-deployment (0.2.0)
-      dotenv (~> 1.0)
     erubis (2.7.0)
     excon (0.43.0)
     execjs (2.2.2)
@@ -309,7 +306,6 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
-  dotenv-deployment
   ez_allpay!
   figaro
   fog
