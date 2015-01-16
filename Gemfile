@@ -7,7 +7,7 @@ gem "figaro"
 gem 'ez_allpay', git: 'https://github.com/madeinfree/ez_allpay.git'
 
 gem 'bootstrap-sass', '~> 3.2.0'
-gem 'autoprefixer-rails'
+gem 'autoprefixer-rails', '>= 5.0.0.1'
 gem 'simple_form'
 
 #user model
