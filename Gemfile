@@ -37,7 +37,7 @@ end
 
 group :production do
   gem 'mysql2'
-  gem 'rails_12factor'
+  # gem 'rails_12factor' #for heroku
 end
 
 # Use SCSS for stylesheets
